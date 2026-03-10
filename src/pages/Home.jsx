@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Mail, Terminal, Code2, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import resumePdf from '../assets/CV_Rahul_Kala.pdf';
-
+import profilePhoto from '../assets/profilephoto.jpeg';
 export default function Home() {
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
@@ -79,7 +79,7 @@ export default function Home() {
                                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
                                     {/* Since we don't have a real photo yet, use a premium placeholder or abstract shapes */}
                                     <img
-                                        src="src/assets/profilephoto.jpeg"
+                                        src={profilePhoto}
                                         alt="Rahul Kala"
                                         className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                     />
