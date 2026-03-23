@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Code } from 'lucide-react';
+import { Github } from 'lucide-react';
+
+import learnSphereImg from '../assets/LearnSphere.png';
+import algoVizImg from '../assets/AlgoViz.png';
+import fitFlowImg from '../assets/FitFlow.png';
 
 export default function Projects() {
     const [filter, setFilter] = useState('All');
@@ -12,7 +16,8 @@ export default function Projects() {
             description: "A centralized learning platform designed for organized and efficient access to learning resources with structured content display and smooth navigation.",
             techStack: ["React.js", "Node.js", "MongoDB"],
             github: "https://github.com/Rahulkala013/LearnSphere",
-            category: "Full Stack"
+            category: "Full Stack",
+            image: learnSphereImg
         },
         {
             id: 2,
@@ -20,7 +25,8 @@ export default function Projects() {
             description: "A visual tool that demonstrates algorithms such as Merge Sort, Quick Sort, Bubble Sort, BFS, and DFS through animations and step-by-step execution.",
             techStack: ["React.js", "JavaScript", "HTML", "Tailwind CSS"],
             github: "https://github.com/Rahulkala013/Algo-viz",
-            category: "Frontend"
+            category: "Frontend",
+            image: algoVizImg
         },
         {
             id: 3,
@@ -28,7 +34,8 @@ export default function Projects() {
             description: "A fitness platform that allows users to access workout plans, track progress, and manage personalized fitness routines.",
             techStack: ["HTML", "Tailwind CSS", "JavaScript", "PHP"],
             github: "https://github.com/Rahulkala013/Fitflow",
-            category: "Full Stack"
+            category: "Full Stack",
+            image: fitFlowImg
         }
     ];
 
@@ -92,15 +99,28 @@ export default function Projects() {
                                 key={project.id}
                                 className="bg-card rounded-2xl overflow-hidden border border-white/5 flex flex-col group hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
                             >
-                                {/* Project Image Placeholder - dynamically generated styled background */}
-                                <div className="h-48 relative overflow-hidden w-full bg-gradient-to-br from-background to-card flex items-center justify-center border-b border-white/5">
-                                    <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
-                                    <Code className="h-20 w-20 text-text/10 group-hover:text-primary/20 transition-colors duration-500 scale-110 group-hover:scale-125" />
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
-                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-card rounded-full text-text hover:text-primary hover:scale-110 transition-all shadow-lg mx-2 border border-white/10">
+                                {/* Project Image */}
+                                <div className="h-52 relative overflow-hidden w-full">
+                                    <img
+                                        src={project.image}
+                                        alt={`${project.title} screenshot`}
+                                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                    {/* Hover overlay */}
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="p-3 bg-card rounded-full text-text hover:text-primary hover:scale-110 transition-all shadow-lg border border-white/10"
+                                        >
                                             <Github className="w-6 h-6" />
                                         </a>
                                     </div>
+                                    {/* Category badge */}
+                                    <span className="absolute top-3 right-3 px-3 py-1 text-xs font-semibold rounded-full bg-primary/80 text-white backdrop-blur-sm">
+                                        {project.category}
+                                    </span>
                                 </div>
 
                                 {/* Content */}
