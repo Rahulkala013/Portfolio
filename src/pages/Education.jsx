@@ -6,7 +6,7 @@ export default function Education() {
         {
             institution: "Lovely Professional University",
             degree: "Bachelor of Technology – Computer Science and Engineering",
-            score: "CGPA: 7.68",
+            score: "CGPA: 7.84",
             date: "2023 – Present",
             icon: <GraduationCap className="w-6 h-6 text-primary" />
         },
