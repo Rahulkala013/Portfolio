@@ -181,7 +181,7 @@ export default function Skills() {
                                                 <h2 className="text-xl font-bold tracking-tight">{category.title}</h2>
                                             </div>
 
-                                            <div className="flex flex-wrap gap-3 relative z-10 mt-auto">
+                                            <div className="flex flex-wrap gap-3 relative z-10">
                                                 {category.skills.map((skill, sIdx) => (
                                                     <motion.div
                                                         key={sIdx}
@@ -241,7 +241,7 @@ export default function Skills() {
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="text-sm text-text/60 leading-relaxed mt-auto">
+                                        <p className="text-sm text-text/60 leading-relaxed">
                                             {skill.description}
                                         </p>
                                     </div>
