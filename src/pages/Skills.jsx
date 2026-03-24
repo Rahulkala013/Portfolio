@@ -105,15 +105,8 @@ const softSkills = [
     },
 ];
 
-const techFilterOptions = ['All', 'Frontend', 'Backend', 'Programming Languages', 'Databases & Tools', 'Domain Skills'];
-
 export default function Skills() {
     const [section, setSection] = useState('Technical');
-    const [techFilter, setTechFilter] = useState('All');
-
-    const filteredTech = techFilter === 'All'
-        ? techCategories
-        : techCategories.filter(c => c.title === techFilter);
 
     return (
         <div className="pt-24 pb-16 min-h-screen">
@@ -143,7 +136,7 @@ export default function Skills() {
                     {['Technical', 'Soft Skills'].map(tab => (
                         <button
                             key={tab}
-                            onClick={() => { setSection(tab); setTechFilter('All'); }}
+                            onClick={() => setSection(tab)}
                             className={`px-7 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                                 section === tab
                                     ? 'bg-gradient-to-r from-primary to-indigo-500 text-white shadow-[0_0_18px_rgba(99,102,241,0.45)]'
@@ -166,27 +159,10 @@ export default function Skills() {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.35 }}
                         >
-                            {/* Sub-filter Pills */}
-                            <div className="flex flex-wrap justify-center gap-3 mb-12">
-                                {techFilterOptions.map(option => (
-                                    <button
-                                        key={option}
-                                        onClick={() => setTechFilter(option)}
-                                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                                            techFilter === option
-                                                ? 'bg-primary text-white shadow-[0_0_14px_rgba(99,102,241,0.45)]'
-                                                : 'bg-card text-text/70 border border-white/10 hover:border-primary/50 hover:text-text'
-                                        }`}
-                                    >
-                                        {option}
-                                    </button>
-                                ))}
-                            </div>
-
                             {/* Category Cards */}
-                            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+                            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 <AnimatePresence>
-                                    {filteredTech.map((category) => (
+                                    {techCategories.map((category) => (
                                         <motion.div
                                             layout
                                             key={category.title}
@@ -194,7 +170,7 @@ export default function Skills() {
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0.9 }}
                                             transition={{ duration: 0.35 }}
-                                            className="bg-card rounded-2xl p-7 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-lg relative overflow-hidden group"
+                                            className="flex flex-col bg-card rounded-2xl p-7 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-lg relative overflow-hidden group"
                                         >
                                             <div className={`absolute top-0 right-0 w-40 h-40 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${category.color === 'primary' ? 'bg-gradient-to-br from-primary/15 to-transparent' : 'bg-gradient-to-br from-secondary/15 to-transparent'}`} />
 
@@ -205,7 +181,7 @@ export default function Skills() {
                                                 <h2 className="text-xl font-bold tracking-tight">{category.title}</h2>
                                             </div>
 
-                                            <div className="flex flex-wrap gap-3 relative z-10">
+                                            <div className="flex flex-wrap gap-3 relative z-10 mt-auto">
                                                 {category.skills.map((skill, sIdx) => (
                                                     <motion.div
                                                         key={sIdx}
@@ -239,7 +215,7 @@ export default function Skills() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.35 }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start"
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         >
                             {softSkills.map((skill, idx) => (
                                 <motion.div
@@ -248,12 +224,12 @@ export default function Skills() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.4, delay: idx * 0.08 }}
                                     whileHover={{ y: -4 }}
-                                    className="group bg-card rounded-2xl p-7 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-lg relative overflow-hidden cursor-default"
+                                    className="flex flex-col group bg-card rounded-2xl p-7 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-lg relative overflow-hidden cursor-default"
                                 >
                                     {/* Glow */}
                                     <div className={`absolute top-0 right-0 w-40 h-40 rounded-bl-full bg-gradient-to-br ${skill.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-                                    <div className="relative z-10">
+                                    <div className="relative z-10 flex flex-col h-full">
                                         {/* Icon */}
                                         <div className="p-3 bg-background rounded-xl border border-white/5 shadow-inner w-fit mb-5">
                                             {skill.icon}
@@ -265,7 +241,7 @@ export default function Skills() {
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="text-sm text-text/60 leading-relaxed">
+                                        <p className="text-sm text-text/60 leading-relaxed mt-auto">
                                             {skill.description}
                                         </p>
                                     </div>
